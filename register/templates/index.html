@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Dobrodošli
+{% endblock %}
+
+{% block css_files %}
+{% endblock %}
+
+
+{% block content %}
+<div class="p-5 text-center">
+<h1 class="border border-secondary p-5 border-3 rounded">Dobrodošli na našu stranicu!</h1>
+<button type="button" class="btn btn-primary m-3"><a class="text-white text-decoration-none fw-bold m-3 p-3" href="{% url 'login' %}">Login</a></button>
+<button type="button" class="btn btn-success m-3"><a class="text-white text-decoration-none fw-bold m-3 p-3" href="{% url 'register' %}">Registracija</a></button>
+</div>
+{% endblock %}

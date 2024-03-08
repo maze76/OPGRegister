@@ -1,0 +1,14 @@
+#INITIAL DATA FOR PRODUCT CATEGORY
+#replace model name with your if you call it different in models.py
+- model: register.ProductCategory
+  pk: 1
+  fields:
+    name: VOĆE
+- model: register.ProductCategory
+  pk: 2
+  fields:
+    name: POVRĆE
+- model: register.ProductCategory
+  pk: 3
+  fields:
+    name: MLIJEČNI PROIZVODI
