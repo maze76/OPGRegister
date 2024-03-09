@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
 
 {% block title %}
-Registar
+  Register
 {% endblock %}
 
 {% block css_files %}
@@ -11,18 +12,47 @@ Registar
 
 {% block content %}
 
+<style>
+    .center-input .form-control {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+
 <div style="display: flex; justify-content: center;">
-    <p><h1>Register</h1></p>
+    <p><h1>{% trans "Register" %}</h1></p>
 </div>
 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form method="post">
+            <form method="post" action="{% url 'register' %}" novalidate>
                 {% csrf_token %}
-                {{ company_form.as_p }}
-                {{ user_form.as_p }}
-                <button type="submit">Register</button>
+                {% for field in company_form %}
+                    <div class="form-group row center-input">
+                        <label for="" class="col-sm-3 col-form-label">{{ field.label_tag }}</label>
+                        <div class="col-sm-6">
+                            <p class="form-control">{{ field }}</p>
+                        </div> 
+                        <div class="col-sm-6 d-flex justify-content-end" >
+                            <p>{{ field.errors }}</p>
+                        </div> 
+                    </div>
+                {% endfor %}
+                {% for field in user_form %}
+                    <div class="form-group row center-input">
+                        <label for="" class="col-sm-3 col-form-label">{{ field.label_tag }}</label> 
+                        <div class="col-sm-6">
+                            <p class="form-control">{{ field }}</p>
+                        </div> 
+                        <div class="col-sm-6 d-flex justify-content-end" >
+                            <p>{{ field.errors }}</p>
+                        </div> 
+                    </div>
+                {% endfor %}
+                <button type="submit">{% trans "Register" %}</button>
             </form>
         </div>
     </div>

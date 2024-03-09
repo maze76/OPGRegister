@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-08 22:19+0000\n"
+"POT-Creation-Date: 2024-03-09 05:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,45 +19,9 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-
+#: OPGRegister/settings.py:133
 msgid "Croatian"
 msgstr "Hrvatski"
-
-#messsages from forms
-
-msgid "first name"
-msgstr "Ime"
-
-msgid "last name"
-msgstr "Prezime"
-
-msgid "company name"
-msgstr "Naziv OPG-a"
-
-msgid "address"
-msgstr "Adresa"
-
-msgid "phone"
-msgstr "Telefon"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #: env/lib/python3.11/site-packages/django/contrib/messages/apps.py:16
 msgid "Messages"
@@ -95,7 +59,7 @@ msgstr ""
 
 #: env/lib/python3.11/site-packages/django/core/validators.py:22
 msgid "Enter a valid value."
-msgstr ""
+msgstr "Unesite ispravnu vrijednost"
 
 #: env/lib/python3.11/site-packages/django/core/validators.py:104
 #: env/lib/python3.11/site-packages/django/forms/fields.py:760
@@ -108,7 +72,7 @@ msgstr ""
 
 #: env/lib/python3.11/site-packages/django/core/validators.py:176
 msgid "Enter a valid email address."
-msgstr ""
+msgstr "Unesite valjanu email adresu"
 
 #. Translators: "letters" means latin letters: a-z and A-Z.
 #: env/lib/python3.11/site-packages/django/core/validators.py:259
@@ -518,8 +482,9 @@ msgid ":?.!"
 msgstr ""
 
 #: env/lib/python3.11/site-packages/django/forms/fields.py:95
+#: register/forms.py:17
 msgid "This field is required."
-msgstr ""
+msgstr "Ovo polje je potrebno ispuniti"
 
 #: env/lib/python3.11/site-packages/django/forms/fields.py:304
 msgid "Enter a whole number."
@@ -1272,3 +1237,91 @@ msgstr ""
 #: env/lib/python3.11/site-packages/django/views/templates/default_urlconf.html:248
 msgid "Connect, get help, or contribute"
 msgstr ""
+
+#: register/forms.py:21
+msgid "Phone number must contain only numeric characters."
+msgstr "Telefonski broj smije sadržavati samo brojeve."
+
+#: register/forms.py:25
+msgid "Required. Enter a valid email address."
+msgstr "Potrebno je ispuniti ovo polje. Unesite valjanu email adresu."
+
+#: register/forms.py:31
+msgid "username"
+msgstr "Korisničko ime"
+
+#: register/forms.py:32
+msgid "email"
+msgstr "Email"
+
+#: register/forms.py:33
+msgid "password1"
+msgstr "Lozinka"
+
+#: register/forms.py:34
+msgid "password2"
+msgstr "Ponovljena lozinka"
+
+#: register/forms.py:37 register/forms.py:38 register/forms.py:39
+#: register/forms.py:40 register/forms.py:56 register/forms.py:69
+#: register/forms.py:70 register/forms.py:71 register/forms.py:72
+#: register/forms.py:73
+msgid "Please fill out this field."
+msgstr "Ovo polje je potrebno ispuniti."
+
+#: register/forms.py:57 register/forms.py:74
+msgid "Phone validation message"
+msgstr ""
+"Broj treba biti u formatu: +099999999 ili 99999999999. Maksimalno 17 brojeva."
+
+#: register/forms.py:62
+msgid "first_name"
+msgstr "Ime"
+
+#: register/forms.py:63
+msgid "last_name"
+msgstr "Prezime"
+
+#: register/forms.py:64
+msgid "company_name"
+msgstr "Naziv OPG-a"
+
+#: register/forms.py:65
+msgid "address"
+msgstr "Adresa"
+
+#: register/forms.py:66
+msgid "phone"
+msgstr "Telefon"
+
+#: register/templates/register.html:27 register/templates/register.html:37
+#: register/templates/register_backup.html:27
+#: register/templates/register_backup.html:72
+#: register/templates/register_backup.html:85
+#: register/templates/register_backup.html:120
+msgid "Register"
+msgstr "Registracija"
+
+#~ msgid ""
+#~ "Your password can’t be too similar to your other personal information."
+#~ msgstr ""
+#~ "Vaša lozinka ne smije biti previše slična vašim ostalim osobnim "
+#~ "informacijama."
+
+#~ msgid "Your password can’t be a commonly used password."
+#~ msgstr "Vaša lozinka ne smije biti uobičajeno korištena lozinka."
+
+#~ msgid "Your password can’t be entirely numeric."
+#~ msgstr "Vaša lozinka ne smije biti potpuno numerička."
+
+#~ msgid ""
+#~ "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+#~ msgstr ""
+#~ "Potrebno ispuniti. Max 150 znakova. Samo slova, brojke i sljedeći znakovi "
+#~ "@/./+/-/_ ."
+
+#~ msgid "Email must contain @ symbol."
+#~ msgstr "Email mora sadržavati @ znak."
+
+#~ msgid "Phone message"
+#~ msgstr "Unesi telefonski broj u formi '+999999999999' ili '9999999999999'"
