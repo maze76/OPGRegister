@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block css_files %}
+<!-- <link rel="stylesheet" href="{% static "register/styles.css" %}"> -->
+{% endblock %}
+
+{% block page_title %}
+Profil
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-3">
+            <p class="text-center"><h1>{% trans "Edit profile title" %}</h1></p>
+            <form method="post" action="{% url 'profile' %}" novalidate>
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                        <label for="" class="col-form-label">{{ field.label_tag }}</label>
+                        <div class="col-auto">
+                            <p class="form-control">{{ field }}</p>
+                        </div> 
+                        <div class="col-auto" >
+                            <p>{{ field.errors }}</p>
+                        </div> 
+                    </div>
+                </div>
+                {% endfor %}
+            <button class="btn btn-success my-3 px-3 text-white text-decoration-none fw-bold" type="submit">{% trans "Edit save" %}</button>
+            <button class="btn btn-success my-3 px-3"> 
+                <a class="text-white text-decoration-none fw-bold" href="{% url 'product_list' %}">{% trans "Product list button" %}</a></button>
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}

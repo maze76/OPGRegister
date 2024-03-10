@@ -1,16 +1,17 @@
-{% extends "base2.html" %}
+{% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
 {% block css_files %}
 {% endblock %}
 
 {% block page_title %}
-Editiranje proizvoda
+Edit product
 {% endblock %}
 
 {% block content %}
 <div class="container p-5" style="max-width: 500px;">
-<h1 class="ms-1 p-2 text-start">Editiranje proizvoda</h1>
+<h1 class="ms-1 p-2 text-start">{% trans "Edit product" %}</h1>
 <form class="form-group" action="" method="POST">
     {% csrf_token %}
     <table>

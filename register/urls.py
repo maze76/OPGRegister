@@ -2,7 +2,8 @@
 # from .import views
 from django.urls import path
 from .views import RegisterView, IndexView, LoginView, ProductListView, \
-                        AddProductView, ProductUpdateView, DeleteItemView, ProductDetailView, CustomLogoutView
+                    AddProductView, ProductUpdateView, DeleteItemView, \
+                    ProductDetailView, CustomLogoutView, ProfileView
 
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
@@ -14,7 +15,5 @@ urlpatterns = [
     path("product_update/<str:pk>/", ProductUpdateView.as_view(), name="product_update"),
     path("delete_items/<str:pk>/", DeleteItemView.as_view(), name="delete_items"),
     path("product_id/<pk>", ProductDetailView.as_view(), name="product_id"),
-
-    # path("profile/", views.profile, name="profile"),
-    # path("edit_profile/<str:pk>/", views.edit_profile, name="edit_profile"),
+    path('profile/', ProfileView.as_view(), name='profile'),
 ]

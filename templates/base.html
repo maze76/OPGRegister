@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,8 +19,12 @@
     <ul>
         <!-- Your other navigation links -->
         {% if user.is_authenticated %}
-        <li><a href="{% url 'logout' %}">Logout</a></li>
-        <li>Welcome, {{ user.username }}</li>
+        <li><a href="{% url 'logout' %}">{% trans "Logout" %}</a></li>
+        <li>{% trans "Welcome greeting" %} {{ user.username }}
+            <button class="rounded" style="margin-left: 10px">
+                <a class="link-success link-opacity-50-hover px-3 text-decoration-none fw-bold" 
+                href="{% url 'profile' %}">{% trans "Edit profile" %}</a></button>
+        </li>
         {% endif %}
     </ul>
 </nav>

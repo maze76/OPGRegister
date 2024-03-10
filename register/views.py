@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Product
+from .models import Product, Company
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from django.http import HttpResponseRedirect
@@ -68,7 +68,7 @@ class LoginView(FormView):
 class ProductListView(LoginRequiredMixin, ListView):
     model = Product
     template_name = 'product_list.html'
-    context_object_name = 'product'
+    context_object_name = 'products'
 
     def get_queryset(self):
         return Product.objects.filter(creator=self.request.user)
@@ -148,4 +148,19 @@ class CustomLogoutView(View):
     def get(self, request, *args, **kwargs):
         logout(request)
         return HttpResponseRedirect(self.redirect_url)
+
+
+class ProfileView(TemplateView):
+    template_name = 'profile.html'
+
+    def get(self, request, *args, **kwargs):
+        form = CompanyForm(instance=request.user.company)  # Assuming Company model has a ForeignKey to User model
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = CompanyForm(request.POST, instance=request.user.company)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')  # Redirect to the profile page after saving
+        return render(request, self.template_name, {'form': form})
 

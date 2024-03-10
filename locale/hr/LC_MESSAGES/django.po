@@ -21,7 +21,59 @@ msgstr ""
 
 
 msgid "Login"
+msgstr "Prijava"
+
+msgid "Logout"
+msgstr "Odjavi se"
+
+msgid "Welcome greeting"
+msgstr "Dobrodošli,"
+
+msgid "Login login form button"
 msgstr "Prijavi se"
+
+msgid "Register register form button"
+msgstr "Registriraj se"
+
+msgid "Login button"
+msgstr "Na prijavu"
+
+msgid "Register button"
+msgstr "Na registraciju"
+
+msgid "Edit profile title"
+msgstr "Uređivanje profila"
+
+msgid "Edit profile"
+msgstr "Uredi korisnički profil"
+
+msgid "Edit save"
+msgstr "Snimi promjene"
+
+msgid "Product list button"
+msgstr "Na listu proizvoda"
+
+msgid "Add product"
+msgstr "Dodaj proizvod"
+
+msgid "Product"
+msgstr "Proizvod"
+
+msgid "Product category"
+msgstr "Kategorija proizvoda"
+
+msgid "Details"
+msgstr "Detalji"
+
+msgid "Product delete"
+msgstr "Brisanje"
+
+msgid "Delete product"
+msgstr "Izbriši"
+
+msgid "Edit product"
+msgstr "Editiranje proizvoda"
+
 
 
 #: OPGRegister/settings.py:133

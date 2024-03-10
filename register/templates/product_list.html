@@ -1,47 +1,49 @@
-{% extends "base2.html" %}
+{% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
 {% block css_files %}
 {% endblock %}
 
 {% block page_title %}
-Lista proizvoda
+Product list
 {% endblock %}
 
 {% block content %}
 
 <div class="container p-5 pe-4 pt-5 text-end" style="max-width: 750px;">
-<button class="btn btn-success ms-auto">
-    <a class="text-white text-decoration-none fw-bold" href="{% url "add_product" %}">Dodaj proizvod</a></button>
+  <button class="btn btn-success ms-auto">
+      <a class="text-white text-decoration-none fw-bold" href="{% url "add_product" %}">{% trans "Add product" %}</a></button>
 </div>
+
 <div class="container" style="max-width: 750px;">
-<div class="table-responsive">
-<div class="container p-3">
-<table id="myTable" class="table table-secondary table-hover table-striped
-            table-borderless border-primary">
-    <thead class="table-primary">
-        <div class="row">
-        <tr>
-            <div class="col"><th>Proizvod<i class="bi bi-sort-alpha-up p-2 fs-4"></i></th></div>    
-            <div class="col"><th>Kategorija proizvoda<i class="bi bi-sort-alpha-up p-2 fs-4"></i></th></div>
-            <div class="col"><th>Detalji</th></div> 
-            <div class="col"><th>Brisanje</th></div>
-        </tr>
-        </div>
-    </thead>
-    <tbody class="table-group-divider">
-        {% for product in product %}
-        <tr> 
-            <td>{{ product.product_name }}</td>
-            <td>{{ product.product_category }}</td>
-            <td><a class="fw-bold" href="{% url 'product_update' product.id %}">Detalji</a></td>
-            <td><a class="fw-bold" href="{% url 'delete_items' product.id %}">Izbrisi</a></td>
-        </tr>
-        {% endfor %}
-    </tbody> 
- </table>
-</div>
-</div>
+  <div class="table-responsive">
+      <div class="container p-3">
+      <table id="myTable" class="table table-secondary table-hover table-striped
+                  table-borderless border-primary">
+          <thead class="table-primary">
+              <div class="row">
+              <tr>
+                  <div class="col"><th>{% trans "Product" %}<i class="bi bi-sort-alpha-up p-2 fs-4"></i></th></div>    
+                  <div class="col"><th>{% trans "Product category" %}<i class="bi bi-sort-alpha-up p-2 fs-4"></i></th></div>
+                  <div class="col"><th>{% trans "Details" %}</th></div> 
+                  <div class="col"><th>{% trans "Product delete" %}</th></div>
+              </tr>
+              </div>
+          </thead>
+          <tbody class="table-group-divider">
+              {% for product in products %}
+              <tr> 
+                  <td>{{ product.product_name }}</td>
+                  <td>{{ product.product_category }}</td>
+                  <td><a class="fw-bold" href="{% url 'product_update' product.id %}">{% trans "Details" %}</a></td>
+                  <td><a class="fw-bold" href="{% url 'delete_items' product.id %}">{% trans "Delete product" %}</a></td>
+              </tr>
+              {% endfor %}
+          </tbody> 
+      </table>
+    </div>
+  </div>
 </div>
 
 <script>
