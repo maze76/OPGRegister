@@ -19,6 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
+
+msgid "Login"
+msgstr "Prijavi se"
+
+
 #: OPGRegister/settings.py:133
 msgid "Croatian"
 msgstr "Hrvatski"
@@ -34,6 +39,9 @@ msgstr "Mapa stranice"
 #: env/lib/python3.11/site-packages/django/contrib/staticfiles/apps.py:9
 msgid "Static Files"
 msgstr "Statički fileovi"
+
+msgid "The two password fields didn't match."
+msgstr "Lozinke se ne podudaraju"
 
 #: env/lib/python3.11/site-packages/django/contrib/syndication/apps.py:7
 msgid "Syndication"
@@ -1249,6 +1257,9 @@ msgstr "Potrebno je ispuniti ovo polje. Unesite valjanu email adresu."
 #: register/forms.py:31
 msgid "username"
 msgstr "Korisničko ime"
+
+msgid "login password"
+msgstr "Lozinka"
 
 #: register/forms.py:32
 msgid "email"

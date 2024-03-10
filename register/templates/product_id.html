@@ -1,0 +1,16 @@
+{% extends "base2.html" %}
+{% load static %}
+
+{% block css_files %}
+{% endblock %}
+
+{% block page_title %}
+Proizvod
+{% endblock %}
+
+{% block content %}
+<table>
+    <p>Ime proizvoda: {{ item.product_name }}</p>
+    <p>Kategorija proizvoda: {{ item.product_category}}</p>    
+</table>
+{% endblock %}

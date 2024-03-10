@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Company
+from .models import Company, Product, ProductCategory
 from django.utils.translation import gettext as _
 from django.core.exceptions import ValidationError
 from django.core.validators import EMPTY_VALUES
@@ -37,7 +37,8 @@ class UserForm(UserCreationForm):
             'username': {'required': _('Please fill out this field.')},
             'email': {'required': _('Please fill out this field.')},
             'password1': {'required': _('Please fill out this field.')},
-            'password2': {'required': _('Please fill out this field.')},
+            'password2': {'required': _('Please fill out this field.'),
+                          'password_mismatch': _("The two password fields didn't match.")},
         }
 
 
@@ -63,5 +64,26 @@ class CompanyForm(forms.ModelForm):
         }
 
 class LoginForm(forms.Form):
-    username = forms.CharField(max_length=150)
-    password = forms.CharField(widget=forms.PasswordInput)
+    username = forms.CharField(max_length=150, required=True)
+    password = forms.CharField(widget=forms.PasswordInput, required=True)
+
+    def clean(self):
+        cleaned_data = super().clean()
+        username = cleaned_data.get("username")
+        password = cleaned_data.get("password")
+
+        if not username or not password:
+            raise forms.ValidationError("Both username and password are required.")
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].label = _('username')
+        self.fields['password'].label = _('login password')
+
+
+
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['product_name', 'product_category']
+

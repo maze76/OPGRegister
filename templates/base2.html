@@ -14,6 +14,16 @@
 
 </head>
 
+<nav>
+    <ul>
+        <!-- Your other navigation links -->
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+        <li>Welcome, {{ user.username }}</li>
+        {% endif %}
+    </ul>
+</nav>
+
 <body class="bg-secondary bg-opacity-25">
 
 <nav class="navbar navbar-expand-sm bg-primary bg-opacity-75">

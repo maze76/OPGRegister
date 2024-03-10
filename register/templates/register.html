@@ -30,17 +30,17 @@
         <div class="col-md-6">
             <form method="post" action="{% url 'register' %}" novalidate>
                 {% csrf_token %}
-                {% for field in company_form %}
-                    <div class="form-group row center-input">
-                        <label for="" class="col-sm-3 col-form-label">{{ field.label_tag }}</label>
-                        <div class="col-sm-6">
-                            <p class="form-control">{{ field }}</p>
-                        </div> 
-                        <div class="col-sm-6 d-flex justify-content-end" >
-                            <p>{{ field.errors }}</p>
-                        </div> 
-                    </div>
-                {% endfor %}
+                    {% for field in company_form %}
+                        <div class="form-group row center-input">
+                            <label for="" class="col-sm-3 col-form-label">{{ field.label_tag }}</label>
+                            <div class="col-sm-6">
+                                <p class="form-control">{{ field }}</p>
+                            </div> 
+                            <div class="col-sm-6 d-flex justify-content-end" >
+                                <p>{{ field.errors }}</p>
+                            </div> 
+                        </div>
+                    {% endfor %}
                 {% for field in user_form %}
                     <div class="form-group row center-input">
                         <label for="" class="col-sm-3 col-form-label">{{ field.label_tag }}</label> 

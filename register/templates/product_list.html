@@ -1,0 +1,99 @@
+{% extends "base2.html" %}
+{% load static %}
+
+{% block css_files %}
+{% endblock %}
+
+{% block page_title %}
+Lista proizvoda
+{% endblock %}
+
+{% block content %}
+
+<div class="container p-5 pe-4 pt-5 text-end" style="max-width: 750px;">
+<button class="btn btn-success ms-auto">
+    <a class="text-white text-decoration-none fw-bold" href="{% url "add_product" %}">Dodaj proizvod</a></button>
+</div>
+<div class="container" style="max-width: 750px;">
+<div class="table-responsive">
+<div class="container p-3">
+<table id="myTable" class="table table-secondary table-hover table-striped
+            table-borderless border-primary">
+    <thead class="table-primary">
+        <div class="row">
+        <tr>
+            <div class="col"><th>Proizvod<i class="bi bi-sort-alpha-up p-2 fs-4"></i></th></div>    
+            <div class="col"><th>Kategorija proizvoda<i class="bi bi-sort-alpha-up p-2 fs-4"></i></th></div>
+            <div class="col"><th>Detalji</th></div> 
+            <div class="col"><th>Brisanje</th></div>
+        </tr>
+        </div>
+    </thead>
+    <tbody class="table-group-divider">
+        {% for product in product %}
+        <tr> 
+            <td>{{ product.product_name }}</td>
+            <td>{{ product.product_category }}</td>
+            <td><a class="fw-bold" href="{% url 'product_update' product.id %}">Detalji</a></td>
+            <td><a class="fw-bold" href="{% url 'delete_items' product.id %}">Izbrisi</a></td>
+        </tr>
+        {% endfor %}
+    </tbody> 
+ </table>
+</div>
+</div>
+</div>
+
+<script>
+
+    th = document.getElementsByTagName('th');
+    
+    for(let c=0; c < th.length-2; c++){
+        th[c].addEventListener('click', item(c))
+    } // th.length-2 select all columns except last two
+    
+    function item(c){
+        return function(){
+            sortTable(c)
+            console.log(c)
+        }
+    }
+    
+    function sortTable(c) {
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById("myTable");
+        switching = true;
+        /* Make a loop that will continue until
+        no switching has been done: */
+        while (switching) {
+          // Start by saying: no switching is done:
+          switching = false;
+          rows = table.rows;
+          /* Loop through all table rows (except the
+          first, which contains table headers): */
+          for (i = 1; i < (rows.length - 1); i++) {
+            // Start by saying there should be no switching:
+            shouldSwitch = false;
+            /* Get the two elements you want to compare,
+            one from current row and one from the next: */
+            x = rows[i].getElementsByTagName("TD")[c];
+            y = rows[i + 1].getElementsByTagName("TD")[c];
+            // Check if the two rows should switch place:
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+              // If so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+          }
+          if (shouldSwitch) {
+            /* If a switch has been marked, make the switch
+            and mark that a switch has been done: */
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+          }
+        }
+      }
+    
+    </script>
+  
+{% endblock %}

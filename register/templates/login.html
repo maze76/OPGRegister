@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
 
 {% block title %}
@@ -12,21 +13,41 @@ Login
 
 {% block content %}
 
+<style>
+    .center-input .form-control {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
 
-<h1>Login</h1>
-{% if messages %}
-    <ul>
-        {% for message in messages %}
-            <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
-{% endif %}
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-</form>
 
+<div style="display: flex; justify-content: center;">
+    <p><h2>{% trans "Login" %}</h2></p>
+</div>
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="post" action="{% url 'login' %}" novalidate>
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group row center-input">
+                        <label for="" class="col-sm-3 col-form-label">{{ field.label_tag }}</label> 
+                        <div class="col-sm-6">
+                            <p class="form-control">{{ field }}</p>
+                        </div> 
+                        <div class="col-sm-6 d-flex justify-content-end" >
+                            <p>{{ field.errors }}</p>
+                        </div> 
+                    </div>
+                {% endfor %}
+                <button type="submit">{% trans "Login" %}</button>    
+            </form>        
+        </div> 
+    </div>
+</div>
 
 
 {% endblock %}

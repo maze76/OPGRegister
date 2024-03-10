@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+Izbriši proizvod
+{% endblock %}
+
+{% block css_files %}
+{% endblock %}
+
+
+{% block content %}
+<div class="container-fluid text-start p-5">
+<h1>Da li zaista želite izbrisati proizvod {{ item.product_name }}?</h1>
+<form action="{% url 'delete_items' item.id %}" method="POST">
+    {% csrf_token %}
+    <input class="btn btn-danger ps-5 pe-5 me-5" type="submit" value="Yes">
+    <a class="btn btn-success ps-5 pe-5 ms-3" href="{% url 'product_list' %}">Ne</a>
+</form>
+</div>
+{% endblock %}
