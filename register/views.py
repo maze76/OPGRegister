@@ -13,9 +13,13 @@ from django.views.generic.edit import CreateView
 from django.http import HttpResponseRedirect
 from django.contrib.auth import logout
 from django.shortcuts import get_object_or_404, redirect
+from django.utils.translation import gettext_lazy as _
+
+
 
 class IndexView(TemplateView):
     template_name = "index.html"
+
 
 class RegisterView(View):
     def get(self, request):
@@ -55,11 +59,13 @@ class LoginView(FormView):
         if user is not None:
             login(self.request, user)
             if self.request.user.is_authenticated:
-                print("User is authenticated:", self.request.user.username)
                 return super().form_valid(form)
+        # else:
+        #     messages.error(self.request, _("Invalid username or password. Please try again."))
+        #     return super().form_invalid(form)
         else:
-            messages.error(self.request, "Korisničko ime i/ili lozinka su pogrešni! Molimo pokušajte ponovo.")
-            return super().form_invalid(form)
+            error_message = _("Invalid username or password. Please try again.")
+            return self.render_to_response(self.get_context_data(form=form, error_message=error_message))
 
     def get_success_url(self):
         return self.success_url
@@ -88,7 +94,7 @@ class AddProductView(LoginRequiredMixin, CreateView):
 class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
     form_class = ProductForm
-    template_name = 'product_update.html'
+    template_name = 'product_edit.html'
     success_url = reverse_lazy('product_list')
 
     def get_queryset(self):
@@ -97,7 +103,7 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
 
 class ProductDetailView(LoginRequiredMixin, DetailView):
     model = Product
-    template_name = 'product_id.html'
+    template_name = 'product_detail.html'
 
     def get_queryset(self):
         return super().get_queryset().filter(creator=self.request.user)
@@ -150,17 +156,44 @@ class CustomLogoutView(View):
         return HttpResponseRedirect(self.redirect_url)
 
 
-class ProfileView(TemplateView):
-    template_name = 'profile.html'
+# class ProfileView(TemplateView):
+#     template_name = 'profile.html'
 
-    def get(self, request, *args, **kwargs):
-        form = CompanyForm(instance=request.user.company)  # Assuming Company model has a ForeignKey to User model
-        return render(request, self.template_name, {'form': form})
+#     def get(self, request, *args, **kwargs):
+#         form = CompanyForm(instance=request.user.company)  # Assuming Company model has a ForeignKey to User model
+#         return render(request, self.template_name, {'form': form})
 
-    def post(self, request, *args, **kwargs):
-        form = CompanyForm(request.POST, instance=request.user.company)
-        if form.is_valid():
-            form.save()
-            return redirect('profile')  # Redirect to the profile page after saving
-        return render(request, self.template_name, {'form': form})
+#     def post(self, request, *args, **kwargs):
+#         form = CompanyForm(request.POST, instance=request.user.company)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('profile')  # Redirect to the profile page after saving
+#         return render(request, self.template_name, {'form': form})
+    
+
+class ProfileDetailView(LoginRequiredMixin, DetailView):
+    model = Company  # Assuming Company is the model representing user profiles
+    template_name = 'profile_detail.html'  # Template for displaying profile details
+    context_object_name = 'profile'  # Context variable name to access profile object
+
+    def get_object(self):
+        return self.request.user.company  # Return the profile associated with the current user
+    
+
+class ProfileEditView(LoginRequiredMixin, UpdateView):
+    model = Company  # Assuming Company is the model representing user profiles
+    form_class = CompanyForm  # Form for editing profile information
+    template_name = 'profile_edit.html'  # Template for editing profile
+    success_url = '/profile/'  # URL to redirect to after successful update
+
+    def get_object(self):
+        return self.request.user.company  # Return the profile associated with the current user
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user  # Associate the profile with the current user
+        return super().form_valid(form)
+
+
+def custom_404_view(request, exception):
+    return render(request, '404.html', status=404)
 

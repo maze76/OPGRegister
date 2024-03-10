@@ -7,22 +7,12 @@ from django.core.exceptions import ValidationError
 from django.core.validators import EMPTY_VALUES
 
 
-# def validate_email_contains_at(value):
-#     if '@' not in value:
-#         raise ValidationError(_('Email must contain @ symbol.'))
-    
-
-def validate_not_empty(value):
-    if value in EMPTY_VALUES:
-        raise forms.ValidationError(_("This field is required."))
-
-def validate_numeric(value):
-    if not value.isdigit():
-        raise ValidationError(_('Phone number must contain only numeric characters.'))
-
 
 class UserForm(UserCreationForm):
     email = forms.EmailField(max_length=100, help_text=_('Required. Enter a valid email address.'))
+    error_messages = {
+        'password_mismatch': _("The two password fields didn't match."),
+    }
 
     class Meta:
         model = User
@@ -86,4 +76,16 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ['product_name', 'product_category']
+        
+        labels = {
+            'product_name': _('product_name'),
+            'product_category': _('product_category'),
+        }
+        
+        error_messages = {
+            'product_name': {'required': _('Please fill out this field.')},
+            'product_category': {'required': _('Please choose one category.')},
+        }
+
+    
 

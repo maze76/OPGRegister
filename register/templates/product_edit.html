@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block css_files %}
+{% endblock %}
+
+{% block page_title %}
+Edit product
+{% endblock %}
+
+{% block content %}
+
+{% include 'navbar.html' %}
+
+<div class="container-fluid">
+  <div class="row justify-content-center">
+      <div class="col-md-3">
+        <p class="text-center"><h1>{% trans "Edit product" %}</h1></p>
+        <form class="form-group" action="" method="POST" novalidate>
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                    <label for="" class="col-form-label">{{ field.label_tag }}</label>
+                    <div class="col-auto">
+                        <p class="form-control">{{ field }}</p>
+                    </div> 
+                    <div class="col-auto" >
+                        <p>{{ field.errors }}</p>
+                    </div> 
+                </div>
+            </div>
+            {% endfor %}
+              <input class="btn btn-success my-3 px-3 text-white text-decoration-none fw-bold" type="submit" value="Ažuriraj"><br>
+        </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

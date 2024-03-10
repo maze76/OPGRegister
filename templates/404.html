@@ -1,12 +1,13 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block title %}
-We didn't fint that page
+Error 404
 {% endblock %}
 
-<div class="container text-center fw-bold">
 {% block content %}
-<h2>We're sorry!</h2>
-<p>But we couldn't fint that page!</p>
-{% endblock %}
+<div class="container-fluid text-start fw-bold">
+<h2>{% trans "404 custom error" as localvar %}</h2>
+{{ localvar|linebreaksbr }}
 </div>
+{% endblock %}

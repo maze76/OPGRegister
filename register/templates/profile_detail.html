@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block css_files %}
+<!-- <link rel="stylesheet" href="{% static "register/styles.css" %}"> -->
+{% endblock %}
+
+{% block page_title %}
+Profil
+{% endblock %}
+
+{% block content %}
+
+{% include 'navbar.html' %}
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-3">
+            <p class="text-center"><h1>{% trans "Profile" %}</h1></p><br>
+                <div class="row g-3 align-items-center">
+                    <h5>
+                    <p>{% trans "username" %}: {{ profile.user.username }}</p>
+                    <p>{% trans "first_name" %}: {{ profile.first_name }}</p>
+                    <p>{% trans "last_name" %}: {{ profile.last_name }}</p>
+                    <p>{% trans "company_name" %}: {{ profile.company_name }}</p>
+                    <p>{% trans "address" %}: {{ profile.address }}</p>
+                    <p>{% trans "phone" %}: {{ profile.phone }}</p> 
+                    </h5>
+                </div>
+                <button class="btn btn-success my-3 px-3"> 
+                    <a class="text-white text-decoration-none fw-bold" href="{% url 'profile_edit' %}">{% trans "Edit profile" %}</a></button>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

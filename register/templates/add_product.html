@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
 {% block css_files %}
 {% endblock %}
@@ -10,22 +11,39 @@ Dodaj Proizvod
 
 {% block content %}
 
-<div class="container p-5" style="max-width: 500px;" >
-<h1 class="ms-1 p-2 text-start">Dodaj proizvod!</h1>
-<form class="form-group" action="{% url 'add_product' %}" method="POST">
-  {% csrf_token %}
-  <table>
-    <div class="row p-3 text-start">
-      <div class="col sm-3">{{ form.product_name.label }}</div>
-      <div class="col sm-9">{{ form.product_name }}</div>
-      </div>
-      <div class="row p-3">
-        <div class="col sm-3">{{ form.product_category.label }}</div>
-        <div class="col sm-9">{{ form.product_category }}</div>
+{% include 'navbar.html' %}
+
+<div class="container-fluid">
+  <div class="row justify-content-center">
+      <div class="col-md-3">
+        <h1 class="text-center">{% trans "Add product" %}</h1>
+        <form action="{% url 'add_product' %}" method="POST" novalidate>
+          {% csrf_token %}
+          <div class="row g-3 align-items-center">
+            <div class="col-auto">
+              <div class="col-form-label">{{ form.product_name.label }}</div>
+            </div>
+            <div class="col-auto">
+              <div class="form-control">{{ form.product_name }}</div>
+            </div>
+            <div class="col-auto" >
+              <p>{{ form.product_name.errors }}</p>
+          </div> 
+          <div class="row g-3 align-items-center">
+            <div class="col-auto">
+              <div class="col-form-label">{{ form.product_category.label }}</div>
+            </div>
+            <div class="col-auto">
+              <div class="form-control">{{ form.product_category }}</div>
+            </div>
+            <div class="col-auto" >
+              <p>{{ form.product_category.errors }}</p>
+          </div> 
+          </div>
         </div>
-    
-    <input class="btn btn-success text-white ms-3 mt-3 px-3 p-2 fw-bold" type="submit" value="Dodaj proizvod">
-  </table>
-  </form>
+        <button class="btn btn-success my-3 px-3 text-white text-decoration-none fw-bold" type="submit">{% trans "Add product" %}</button>
+        </form>
+    </div>
+  </div>
 </div>
 {% endblock %}

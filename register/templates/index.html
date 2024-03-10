@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}
-Dobrodošli
+Welcome page
 {% endblock %}
 
 {% block css_files %}
@@ -11,8 +12,8 @@ Dobrodošli
 
 {% block content %}
 <div class="p-5 text-center">
-<h1 class="border border-secondary p-5 border-3 rounded">Dobrodošli na našu stranicu!</h1>
-<button type="button" class="btn btn-primary m-3"><a class="text-white text-decoration-none fw-bold m-3 p-3" href="{% url 'login' %}">Login</a></button>
-<button type="button" class="btn btn-success m-3"><a class="text-white text-decoration-none fw-bold m-3 p-3" href="{% url 'register' %}">Registracija</a></button>
+<h1 class="border border-secondary p-5 border-3 rounded">{% trans "Welcome to our page" %}</h1>
+<button type="button" class="btn btn-primary m-3"><a class="text-white text-decoration-none fw-bold m-3 p-3" href="{% url 'login' %}">{% trans "Login" %}</a></button>
+<button type="button" class="btn btn-success m-3"><a class="text-white text-decoration-none fw-bold m-3 p-3" href="{% url 'register' %}">{% trans "Register" %}</a></button>
 </div>
 {% endblock %}

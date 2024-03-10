@@ -15,20 +15,6 @@
 
 </head>
 
-<nav>
-    <ul>
-        <!-- Your other navigation links -->
-        {% if user.is_authenticated %}
-        <li><a href="{% url 'logout' %}">{% trans "Logout" %}</a></li>
-        <li>{% trans "Welcome greeting" %} {{ user.username }}
-            <button class="rounded" style="margin-left: 10px">
-                <a class="link-success link-opacity-50-hover px-3 text-decoration-none fw-bold" 
-                href="{% url 'profile' %}">{% trans "Edit profile" %}</a></button>
-        </li>
-        {% endif %}
-    </ul>
-</nav>
-
 <body class="bg-secondary bg-opacity-25">
 
 <nav class="navbar navbar-expand-sm bg-primary bg-opacity-75">

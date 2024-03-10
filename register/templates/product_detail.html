@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block css_files %}
+{% endblock %}
+
+{% block page_title %}
+Proizvod
+{% endblock %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-3">
+            <p class="text-center"><h1>{% trans "Product" %}</h1></p><br>
+                <div class="row g-3 align-items-center">
+                    <h5>
+                    <p>{% trans "Product" %}: {{ product.product_name }}</p>
+                    <p>{% trans "Product category" %}: {{ product.product_category }}</p>
+                    </h5>
+                </div>
+                <button class="btn btn-success my-3 px-3"> 
+                    <a class="text-white text-decoration-none fw-bold" href="{% url 'product_edit' product.id %}">{% trans "Edit product" %}</a></button>
+        </div>
+    </div>
+</div>
+{% endblock %}

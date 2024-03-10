@@ -42,8 +42,7 @@ SECRET_KEY = ENV('SECRET_KEY')
 # False if not in os.environ because of casting above
 DEBUG = ENV('DEBUG')
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['127.0.0.1']
 
 # Application definition
 
@@ -66,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'OPGRegister.middleware.AutoLogout',
 ]
 
 ROOT_URLCONF = 'OPGRegister.urls'
@@ -160,5 +160,10 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SESSION_COOKIE_AGE = 900  # 15 minutes in seconds
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_COOKIE_AGE = int(os.getenv('SESSION_COOKIE_AGE'))
+SESSION_EXPIRE_AT_BROWSER_CLOSE = ENV('SESSION_EXPIRE_AT_BROWSER_CLOSE') # if true cookie is deleted when browser is closed
+AUTO_LOGOUT_DELAY = int(os.getenv('AUTO_LOGOUT_DELAY'))
+
+LOGIN_URL = ENV('LOGIN_URL')
+
+
