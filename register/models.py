@@ -4,11 +4,6 @@ from django.core.validators import RegexValidator
 from django.utils.translation import gettext_lazy as _
 
 
-# phone_regex = RegexValidator(regex=r'^\+?1?\d{7,17}$', 
-#             message="Broj može biti samo u formi +777777777777 max 17 brojeva")
-phone_regex = RegexValidator(regex=r'^\+?1?\d{7,17}$')
-
-
 class ProductCategory(models.Model):
     name = models.CharField(max_length=100)
 
@@ -31,6 +26,8 @@ class Product(models.Model):
     class Meta:
         verbose_name_plural = "Products"
 
+
+phone_regex = RegexValidator(regex=r'^\+?1?\d{7,17}$')
 
 class Company(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

@@ -28,20 +28,14 @@ Login
             <form method="post" action="{% url 'login' %}" novalidate>
                 {% csrf_token %}
                 {% for field in form %}
-                <div class="row g-3 align-items-center">
-                    <div class="col-auto">
-                        <label for="" class="col-form-label">{{ field.label_tag }}</label> 
-                        <div class="col-auto">
-                            <p class="form-control">{{ field }}</p>
-                        </div> 
-                        <div class="col-auto" >
+                        <label for="" class="form-label">{{ field.label_tag }}</label> 
+                            <p class="form-control-lg">{{ field }}</p>
+                        <div class="col-auto" style="color: red">
                             <p>{{ field.errors }}</p>
                         </div> 
-                    </div>
-                </div>
                 {% endfor %}
                 <p style="color: red;">{{ error_message }}</p>
-                <div class="container row justify-content-center col-md-6"></div>
+                <div class="col-sm-6"></div>
                 <button class="btn btn-success my-3 px-3 text-white text-decoration-none fw-bold" type="submit">{% trans "Login login form button" %}</button><br> 
                 <button class="btn btn-success my-3 px-3"> 
                     <a class="text-white text-decoration-none fw-bold" href="{% url 'register' %}">{% trans "Register button" %}</a></button> 

@@ -2,7 +2,7 @@
 # from .import views
 from django.urls import path
 from .views import RegisterView, IndexView, LoginView, ProductListView, \
-                    AddProductView, ProductUpdateView, DeleteItemView, \
+                    AddProductView, ProductUpdateView, DeleteItemView, DeleteUserView,  \
                     ProductDetailView, CustomLogoutView, ProfileDetailView, ProfileEditView
 from django.conf.urls import handler404
 
@@ -18,6 +18,7 @@ urlpatterns = [
     path("product_detail/<pk>", ProductDetailView.as_view(), name="product_detail"),
     path('profile/', ProfileDetailView.as_view(), name='profile_detail'),
     path('profile/edit/', ProfileEditView.as_view(), name='profile_edit'),
+    path('delete/<int:user_id>/', DeleteUserView.as_view(), name='delete_user'),
 ]
 
 handler404 = 'register.views.custom_404_view'  # Specify the view function for rendering 404 errors

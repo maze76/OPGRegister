@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from .forms import CompanyForm, UserForm, ProductForm
-from django.views.generic import TemplateView, FormView, UpdateView, DeleteView, DetailView
+from django.views.generic import TemplateView, FormView, UpdateView, DetailView
 from .forms import LoginForm
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
@@ -14,14 +14,21 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import logout
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import User
 
 
 
 class IndexView(TemplateView):
+    """
+    Welcome, login or register page.
+    """
     template_name = "index.html"
 
 
 class RegisterView(View):
+    """
+    Register view to register company and the user.
+    """
     def get(self, request):
         company_form = CompanyForm()
         user_form = UserForm()
@@ -48,6 +55,9 @@ class RegisterView(View):
         
 
 class LoginView(FormView):
+    """
+    Login view - form after retistration form
+    """
     template_name = 'login.html'
     form_class = LoginForm
     success_url = reverse_lazy('product_list')
@@ -60,9 +70,6 @@ class LoginView(FormView):
             login(self.request, user)
             if self.request.user.is_authenticated:
                 return super().form_valid(form)
-        # else:
-        #     messages.error(self.request, _("Invalid username or password. Please try again."))
-        #     return super().form_invalid(form)
         else:
             error_message = _("Invalid username or password. Please try again.")
             return self.render_to_response(self.get_context_data(form=form, error_message=error_message))
@@ -72,6 +79,9 @@ class LoginView(FormView):
 
 
 class ProductListView(LoginRequiredMixin, ListView):
+    """
+    View for displaying list of products
+    """
     model = Product
     template_name = 'product_list.html'
     context_object_name = 'products'
@@ -81,6 +91,9 @@ class ProductListView(LoginRequiredMixin, ListView):
     
     
 class AddProductView(LoginRequiredMixin, CreateView):
+    """
+    View to add product
+    """
     model = Product
     form_class = ProductForm
     template_name = 'add_product.html'
@@ -92,6 +105,9 @@ class AddProductView(LoginRequiredMixin, CreateView):
     
     
 class ProductUpdateView(LoginRequiredMixin, UpdateView):
+    """
+    Update data of the product
+    """    
     model = Product
     form_class = ProductForm
     template_name = 'product_edit.html'
@@ -102,98 +118,98 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
     
 
 class ProductDetailView(LoginRequiredMixin, DetailView):
+    """
+    View for displaying product details
+    """
     model = Product
     template_name = 'product_detail.html'
 
     def get_queryset(self):
         return super().get_queryset().filter(creator=self.request.user)
     
-
-# class DeleteItemView(LoginRequiredMixin, DeleteView):
-#     model = Product
-#     template_name = 'delete_items.html'
-#     success_url = reverse_lazy('product_list')
-
-#     # def get_queryset(self):
-#     #     # Return an empty queryset since we don't need it
-#     #     return self.model.objects.none()
-
-#     def get_object(self):
-        
-#         # return super().get_queryset().filter(creator=self.request.user)
-#         # return self.model.objects.filter(creator=self.request.user)
-#         return self.model.objects.get(pk=self.kwargs['pk'])
-
-#     def delete(self, request, *args, **kwargs):
-#         self.object = self.get_object()
-#         self.object.delete()
-#         # return HttpResponseRedirect(self.get_success_url())
-#         return super().delete(request, *args, **kwargs)
-    
     
 class DeleteItemView(LoginRequiredMixin, View):
+    """
+    Delete item view, deleting from product detail page
+    """
     def get(self, request, pk):
-        # Retrieve the specific object to be deleted
         item = get_object_or_404(Product, pk=pk)
 
         # Check if the user has permission to delete the object
         if item.creator == request.user:
-            # Delete the object
             item.delete()
-        
-            # Add a success message
-            messages.success(request, 'The item was successfully deleted.')
 
         # Redirect to the success URL (product_list in this case)
         return redirect('product_list')
 
 
 class CustomLogoutView(View):
+    """
+    User logout view, logout from navbar
+    """
     redirect_url = reverse_lazy('login')
 
     def get(self, request, *args, **kwargs):
         logout(request)
         return HttpResponseRedirect(self.redirect_url)
-
-
-# class ProfileView(TemplateView):
-#     template_name = 'profile.html'
-
-#     def get(self, request, *args, **kwargs):
-#         form = CompanyForm(instance=request.user.company)  # Assuming Company model has a ForeignKey to User model
-#         return render(request, self.template_name, {'form': form})
-
-#     def post(self, request, *args, **kwargs):
-#         form = CompanyForm(request.POST, instance=request.user.company)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('profile')  # Redirect to the profile page after saving
-#         return render(request, self.template_name, {'form': form})
     
 
 class ProfileDetailView(LoginRequiredMixin, DetailView):
-    model = Company  # Assuming Company is the model representing user profiles
-    template_name = 'profile_detail.html'  # Template for displaying profile details
-    context_object_name = 'profile'  # Context variable name to access profile object
+    """
+    Details of the user profile
+    """
+    model = Company 
+    template_name = 'profile_detail.html'
+    context_object_name = 'profile'
 
     def get_object(self):
-        return self.request.user.company  # Return the profile associated with the current user
+        return self.request.user.company
     
 
 class ProfileEditView(LoginRequiredMixin, UpdateView):
-    model = Company  # Assuming Company is the model representing user profiles
-    form_class = CompanyForm  # Form for editing profile information
-    template_name = 'profile_edit.html'  # Template for editing profile
-    success_url = '/profile/'  # URL to redirect to after successful update
+    """
+    View for user profile editing
+    """
+    model = Company  
+    form_class = CompanyForm
+    template_name = 'profile_edit.html'
+    success_url = '/profile/'
 
     def get_object(self):
-        return self.request.user.company  # Return the profile associated with the current user
+        return self.request.user.company
 
     def form_valid(self, form):
-        form.instance.user = self.request.user  # Associate the profile with the current user
+        form.instance.user = self.request.user
         return super().form_valid(form)
+
+    
+class DeleteUserView(View):
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        user_id = kwargs.get('user_id')
+        
+        if user_id and user_id != user.id:
+            # If the user_id in the URL doesn't match the logged-in user's ID,
+            return redirect('profile_edit')
+        
+        # Delete related products
+        Product.objects.filter(creator=user).delete()
+
+        # Delete related company
+        company = Company.objects.get(user=user).delete()
+
+        # Delete the user
+        user.delete()
+
+        # Redirect to login page
+        return redirect('login')
 
 
 def custom_404_view(request, exception):
+    """
+    custom 404 page
+    """
     return render(request, '404.html', status=404)
+
+
 

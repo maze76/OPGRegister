@@ -22,37 +22,25 @@
 
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-sm-3">
+        <div class="col-sm-3 col-auto">
             <p><h1>{% trans "Register" %}</h1></p>
             <form method="post" action="{% url 'register' %}" novalidate>
                 {% csrf_token %}
-                    {% for field in company_form %}
-                    <div class="row g-3 align-items-center">
-                        <div class="col-auto">
-                            <label for="" class="col-form-label">{{ field.label_tag }}</label>
-                            <div class="col-auto">
-                                <p class="form-control">{{ field }}</p>
-                            </div> 
-                            <div class="auto" >
-                                <p>{{ field.errors }}</p>
-                            </div> 
-                        </div>
-                    </div>
+                    {% for field in company_form %}                   
+                        <label for="" class="form-label">{{ field.label_tag }}</label>
+                            <p class="form-control-lg">{{ field }}</p>
+                        <div class="auto" style="color: red;">
+                            <p>{{ field.errors }}</p>
+                        </div>                    
                     {% endfor %}
-                {% for field in user_form %}
-                <div class="row g-3 align-items-center">
-                    <div class="col-auto">
-                        <label for="" class="col-form-label">{{ field.label_tag }}</label> 
-                        <div class="col-auto">
-                            <p class="form-control">{{ field }}</p>
-                        </div> 
-                        <div class="col-auto" >
+                    {% for field in user_form %}
+                        <label for="" class="form-label">{{ field.label_tag }}</label> 
+                            <p class="form-control-lg">{{ field }}</p>
+                        <div class="auto"  style="color: red">
                             <p>{{ field.errors }}</p>
                         </div> 
-                    </div>
-                </div>
-                {% endfor %}
-                <div class="container row justify-content-center col-md-6">
+                    {% endfor %}
+                <div class="col-sm-6">
                 <button class="btn btn-success my-3 px-3 text-white text-decoration-none fw-bold" type="submit">{% trans "Register register form button" %}</button>
                 <button class="btn btn-success my-3 px-3"> 
                     <a class="text-white text-decoration-none fw-bold" href="{% url 'login' %}">{% trans "Login button" %}</a></button>

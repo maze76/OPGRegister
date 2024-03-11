@@ -16,31 +16,19 @@ Dodaj Proizvod
 <div class="container-fluid">
   <div class="row justify-content-center">
       <div class="col-md-3">
-        <h1 class="text-center">{% trans "Add product" %}</h1>
+        <p><h1>{% trans "Add product" %}</h1></p>
         <form action="{% url 'add_product' %}" method="POST" novalidate>
           {% csrf_token %}
-          <div class="row g-3 align-items-center">
-            <div class="col-auto">
-              <div class="col-form-label">{{ form.product_name.label }}</div>
-            </div>
-            <div class="col-auto">
-              <div class="form-control">{{ form.product_name }}</div>
-            </div>
-            <div class="col-auto" >
-              <p>{{ form.product_name.errors }}</p>
-          </div> 
-          <div class="row g-3 align-items-center">
-            <div class="col-auto">
-              <div class="col-form-label">{{ form.product_category.label }}</div>
-            </div>
-            <div class="col-auto">
-              <div class="form-control">{{ form.product_category }}</div>
-            </div>
-            <div class="col-auto" >
-              <p>{{ form.product_category.errors }}</p>
-          </div> 
-          </div>
-        </div>
+              <label class="form-label">{{ form.product_name.label }}</label>
+              <p class="form-control-lg">{{ form.product_name }}</p>
+                <div class="col-auto" style="color: red;" >
+                  <p>{{ form.product_name.errors }}</p>
+                </div> 
+              <label class="form-label">{{ form.product_category.label }}</label>
+              <p class="form-control-lg">{{ form.product_category }}</p>
+                <div class="col-auto" style="color: red;" >
+                  <p>{{ form.product_category.errors }}</p>
+              </div> 
         <button class="btn btn-success my-3 px-3 text-white text-decoration-none fw-bold" type="submit">{% trans "Add product" %}</button>
         </form>
     </div>

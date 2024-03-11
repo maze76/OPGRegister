@@ -17,26 +17,34 @@ Profil
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-3">
-            <p class="text-center"><h1>{% trans "Edit profile title" %}</h1></p>
+            <p><h1>{% trans "Edit profile title" %}</h1></p>
             <form method="post" action="{% url 'profile_edit' %}" novalidate>
                 {% csrf_token %}
                 {% for field in form %}
-                <div class="row g-3 align-items-center">
-                    <div class="col-auto">
-                        <label for="" class="col-form-label">{{ field.label_tag }}</label>
-                        <div class="col-auto">
-                            <p class="form-control">{{ field }}</p>
-                        </div> 
-                        <div class="col-auto" >
+                    <label for="" class="form-label">{{ field.label_tag }}</label>
+                    <p class="form-control-lg">{{ field }}</p>
+                        <div class="col-auto"  style="color: red;">
                             <p>{{ field.errors }}</p>
                         </div> 
-                    </div>
-                </div>
                 {% endfor %}
             <button class="btn btn-success my-3 px-3 text-white text-decoration-none fw-bold" type="submit">{% trans "Edit save" %}</button>
             </form>
+            
+            <!-- Delete button -->
+            <button id="deleteButton" class="btn btn-success my-3 px-3 text-white text-decoration-none fw-bold" type="submit" 
+                    onclick="confirmAndRedirect()">{% trans "Delete user account" %}</button>
+
         </div>
     </div>
+
+
+    <script>
+        
+    // variable for delete confirmation
+    var deleteUserConfirmationMessage = "{% trans 'Are you sure you want to delete your account?' %}";
+    var deleteUserUrl = "{% url 'delete_user' user_id=request.user.id %}";
+
+    </script>
 
 
 {% endblock %}

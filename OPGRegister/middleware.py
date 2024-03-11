@@ -5,24 +5,11 @@ from datetime import datetime, timedelta
 from django.contrib import auth
 from . import settings
 
-# class SessionExpiredMiddleware:
-#     def __init__(self, get_response):
-#         self.get_response = get_response
-
-#     def __call__(self, request):
-#         response = self.get_response(request)
-
-#         # Check if the user is authenticated and if their session has expired
-#         if request.user.is_authenticated and not request.session.get_expiry_age():
-#             # Avoid redirect loop if already on login page
-#             if resolve(request.path_info).url_name != 'login':
-#                 # Redirect to the login page
-#                 return redirect(reverse('login'))
-
-#         return response
-
 
 class AutoLogout:
+    """
+    Auto logout of the user after time defined in settings.py
+    """
     def __init__(self, get_response):
         self.get_response = get_response
 

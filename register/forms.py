@@ -27,13 +27,11 @@ class UserForm(UserCreationForm):
             'username': {'required': _('Please fill out this field.')},
             'email': {'required': _('Please fill out this field.')},
             'password1': {'required': _('Please fill out this field.')},
-            'password2': {'required': _('Please fill out this field.'),
-                          'password_mismatch': _("The two password fields didn't match.")},
+            'password2': {'required': _('Please fill out this field.')},
         }
 
 
 class CompanyForm(forms.ModelForm):
-    # first_name = forms.CharField(error_messages={'required': _('Please fill out this field.')})
 
     class Meta:
         model = Company
@@ -53,17 +51,18 @@ class CompanyForm(forms.ModelForm):
             'phone': {'required': _('Please fill out this field.')},
         }
 
+
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=150, required=True)
     password = forms.CharField(widget=forms.PasswordInput, required=True)
 
-    def clean(self):
-        cleaned_data = super().clean()
-        username = cleaned_data.get("username")
-        password = cleaned_data.get("password")
+    # def clean(self):
+    #     cleaned_data = super().clean()
+    #     username = cleaned_data.get("username")
+    #     password = cleaned_data.get("password")
 
-        if not username or not password:
-            raise forms.ValidationError("Both username and password are required.")
+    #     if not username or not password:
+    #         raise forms.ValidationError("Both username and password are required.")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
