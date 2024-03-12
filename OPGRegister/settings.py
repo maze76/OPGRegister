@@ -32,7 +32,7 @@ SECRET_KEY = ENV('SECRET_KEY')
 # False if not in os.environ because of casting above
 DEBUG = ENV('DEBUG')
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 # Application definition
 

@@ -31,3 +31,12 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 });
+
+
+// logout function
+window.addEventListener("beforeunload", function(e) {
+  // Make AJAX request to logout
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", logoutUserUrl, false); // Synchronous request
+  xhr.send();
+});

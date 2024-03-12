@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-09 05:54+0100\n"
+"POT-Creation-Date: 2024-03-12 11:09+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,109 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-
-msgid "Login"
-msgstr "Prijava"
-
-msgid "Logout"
-msgstr "Odjavi se"
-
-msgid "Welcome greeting"
-msgstr "Dobrodošli,"
-
-msgid "Welcome to our page"
-msgstr "Dobrodošli na našu stranicu"
-
-msgid "Login login form button"
-msgstr "Prijavi se"
-
-msgid "Register register form button"
-msgstr "Registriraj se"
-
-msgid "Login button"
-msgstr "Na prijavu"
-
-msgid "Register button"
-msgstr "Na registraciju"
-
-msgid "Edit profile title"
-msgstr "Uređivanje profila"
-
-msgid "Edit profile"
-msgstr "Uredi korisnički profil"
-
-msgid "Profile"
-msgstr "Korisnički profil"
-
-msgid "OPG Registry"
-msgstr "OPG Registar"
-
-msgid "Edit save"
-msgstr "Snimi promjene"
-
-msgid "Product list"
-msgstr "Lista proizvoda"
-
-msgid "Add product"
-msgstr "Dodaj proizvod"
-
-msgid "Product"
-msgstr "Proizvod"
-
-msgid "Product category"
-msgstr "Kategorija proizvoda"
-
-msgid "Details"
-msgstr "Detalji"
-
-msgid "Product delete"
-msgstr "Brisanje"
-
-msgid "Delete product"
-msgstr "Izbriši"
-
-msgid "Edit product"
-msgstr "Editiranje proizvoda"
-
-msgid "Are you sure you want to delete this item?"
-msgstr "Jeste li sigurni da želite izbrisati ovu stavku?"
-
-msgid "Are you sure you want to delete your account?"
-msgstr "Jeste li sigurni da želite izbrisati svoj korisnički račun?"
-
-msgid "Delete user account"
-msgstr "Izbriši korisnički račun"
-
-msgid "You pressed OK!"
-msgstr "Pritisnuli ste OK!"
-
-msgid "You pressed Cancel!"
-msgstr "Pritisnuli ste Otkaži!"
-
-msgid "Cancel"
-msgstr "Otkaži"
-
-msgid "404 custom error"
-msgstr  "Stranica koju ste tražili, nažalost nije pronađena.\nStranicu nije moguće pronaći jer je možda privremeno nedostupna, uklonjena ili joj je promijenjeno ime.\nMolimo pokušajte ponovo."
-
-msgid "product_name"
-msgstr "Naziv proizvoda"
-
-msgid "product_category"
-msgstr "Kagegorija proizvoda"
-
-msgid "Please choose one category."
-msgstr "Molimo odaberite jednu kategoriju."
-
-msgid "Invalid username or password. Please try again."
-msgstr "Password i/ili lozinka su neispravni. Molimo pokušajte ponovo."
-
-
-
-
-
-
-#: OPGRegister/settings.py:133
+#: OPGRegister/settings.py:123
 msgid "Croatian"
 msgstr "Hrvatski"
 
@@ -136,9 +34,6 @@ msgstr "Mapa stranice"
 #: env/lib/python3.11/site-packages/django/contrib/staticfiles/apps.py:9
 msgid "Static Files"
 msgstr "Statički fileovi"
-
-msgid "The two password fields didn't match."
-msgstr "Lozinke se ne podudaraju. Molimo pokušajte ponovo."
 
 #: env/lib/python3.11/site-packages/django/contrib/syndication/apps.py:7
 msgid "Syndication"
@@ -587,7 +482,6 @@ msgid ":?.!"
 msgstr ""
 
 #: env/lib/python3.11/site-packages/django/forms/fields.py:95
-#: register/forms.py:17
 msgid "This field is required."
 msgstr "Ovo polje je potrebno ispuniti"
 
@@ -1343,72 +1237,220 @@ msgstr ""
 msgid "Connect, get help, or contribute"
 msgstr ""
 
-#: register/forms.py:21
-msgid "Phone number must contain only numeric characters."
-msgstr "Telefonski broj smije sadržavati samo brojeve."
-
-#: register/forms.py:25
+#: register/forms.py:12
 msgid "Required. Enter a valid email address."
 msgstr "Potrebno je ispuniti ovo polje. Unesite valjanu email adresu."
 
-#: register/forms.py:31
+#: register/forms.py:14
+msgid "The two password fields didn't match."
+msgstr "Lozinke se ne podudaraju. Molimo pokušajte ponovo."
+
+#: register/forms.py:21 register/forms.py:69
+#: register/templates/profile_detail.html:20
 msgid "username"
 msgstr "Korisničko ime"
 
-msgid "login password"
-msgstr "Lozinka"
-
-#: register/forms.py:32
+#: register/forms.py:22
 msgid "email"
 msgstr "Email"
 
-#: register/forms.py:33
+#: register/forms.py:23
 msgid "password1"
 msgstr "Lozinka"
 
-#: register/forms.py:34
+#: register/forms.py:24
 msgid "password2"
 msgstr "Ponovljena lozinka"
 
-#: register/forms.py:37 register/forms.py:38 register/forms.py:39
-#: register/forms.py:40 register/forms.py:56 register/forms.py:69
-#: register/forms.py:70 register/forms.py:71 register/forms.py:72
-#: register/forms.py:73
+#: register/forms.py:27 register/forms.py:28 register/forms.py:29
+#: register/forms.py:30 register/forms.py:47 register/forms.py:48
+#: register/forms.py:49 register/forms.py:50 register/forms.py:51
+#: register/forms.py:85
 msgid "Please fill out this field."
 msgstr "Ovo polje je potrebno ispuniti."
 
-#: register/forms.py:57 register/forms.py:74
-msgid "Phone validation message"
-msgstr ""
-"Broj treba biti u formatu: +099999999 ili 99999999999. Maksimalno 17 brojeva."
-
-#: register/forms.py:62
+#: register/forms.py:40 register/templates/profile_detail.html:21
 msgid "first_name"
 msgstr "Ime"
 
-#: register/forms.py:63
+#: register/forms.py:41 register/templates/profile_detail.html:22
 msgid "last_name"
 msgstr "Prezime"
 
-#: register/forms.py:64
+#: register/forms.py:42 register/templates/profile_detail.html:23
 msgid "company_name"
 msgstr "Naziv OPG-a"
 
-#: register/forms.py:65
+#: register/forms.py:43 register/templates/profile_detail.html:24
 msgid "address"
 msgstr "Adresa"
 
-#: register/forms.py:66
+#: register/forms.py:44 register/templates/profile_detail.html:25
 msgid "phone"
 msgstr "Telefon"
 
-#: register/templates/register.html:27 register/templates/register.html:37
-#: register/templates/register_backup.html:27
-#: register/templates/register_backup.html:72
-#: register/templates/register_backup.html:85
-#: register/templates/register_backup.html:120
+#: register/forms.py:70
+msgid "login password"
+msgstr "Lozinka"
+
+#: register/forms.py:80
+msgid "product_name"
+msgstr "Naziv proizvoda"
+
+#: register/forms.py:81
+msgid "product_category"
+msgstr "Kagegorija proizvoda"
+
+#: register/forms.py:86
+msgid "Please choose one category."
+msgstr "Molimo odaberite jednu kategoriju."
+
+#: register/templates/add_product.html:6 register/templates/add_product.html:16
+#: register/templates/add_product.html:29
+#: register/templates/product_list.html:23
+msgid "Add product"
+msgstr "Dodaj proizvod"
+
+#: register/templates/index.html:6
+msgid "Welcome page"
+msgstr "Početna stranica"
+
+#: register/templates/index.html:12
+msgid "Welcome to our page"
+msgstr "Dobrodošli na našu stranicu"
+
+#: register/templates/index.html:13 register/templates/login.html:7
+#: register/templates/login.html:20
+msgid "Login"
+msgstr "Prijava"
+
+#: register/templates/index.html:14 register/templates/register.html:7
+#: register/templates/register.html:16
 msgid "Register"
 msgstr "Registracija"
+
+#: register/templates/login.html:32
+msgid "Login login form button"
+msgstr "Prijavi se"
+
+#: register/templates/login.html:34
+msgid "Register button"
+msgstr "Na registraciju"
+
+#: register/templates/product_detail.html:6
+#: register/templates/product_detail.html:16
+#: register/templates/product_detail.html:19
+#: register/templates/product_list.html:34
+msgid "Product"
+msgstr "Proizvod"
+
+#: register/templates/product_detail.html:20
+#: register/templates/product_list.html:35
+msgid "Product category"
+msgstr "Kategorija proizvoda"
+
+#: register/templates/product_detail.html:24
+#: register/templates/product_edit.html:6
+#: register/templates/product_edit.html:16
+msgid "Edit product"
+msgstr "Editiranje proizvoda"
+
+#: register/templates/product_list.html:6
+#: register/templates/product_list.html:16 templates/navbar.html:14
+msgid "Product list"
+msgstr "Lista proizvoda"
+
+#: register/templates/product_list.html:36
+#: register/templates/product_list.html:46
+msgid "Details"
+msgstr "Detalji"
+
+#: register/templates/product_list.html:37
+msgid "Product delete"
+msgstr "Brisanje"
+
+#: register/templates/product_list.html:47
+msgid "Delete product"
+msgstr "Izbriši"
+
+#: register/templates/product_list.html:59
+msgid "Are you sure you want to delete this item?"
+msgstr "Jeste li sigurni da želite izbrisati ovu stavku?"
+
+#: register/templates/profile_detail.html:7
+#: register/templates/profile_detail.html:17 templates/navbar.html:17
+msgid "Profile"
+msgstr "Korisnički profil"
+
+#: register/templates/profile_detail.html:29
+msgid "Edit profile"
+msgstr "Uredi korisnički profil"
+
+#: register/templates/profile_edit.html:6
+#: register/templates/profile_edit.html:16
+msgid "Edit profile title"
+msgstr "Uređivanje profila"
+
+#: register/templates/profile_edit.html:26
+msgid "Edit save"
+msgstr "Snimi promjene"
+
+#: register/templates/profile_edit.html:29
+msgid "Delete user account"
+msgstr "Izbriši korisnički račun"
+
+#: register/templates/profile_edit.html:37
+msgid "Are you sure you want to delete your account?"
+msgstr "Jeste li sigurni da želite izbrisati svoj korisnički račun?"
+
+#: register/templates/register.html:34
+msgid "Register register form button"
+msgstr "Registriraj se"
+
+#: register/templates/register.html:36
+msgid "Login button"
+msgstr "Na prijavu"
+
+#: register/views.py:74
+msgid "Invalid username or password. Please try again."
+msgstr "Password i/ili lozinka su neispravni. Molimo pokušajte ponovo."
+
+#: templates/404.html:10
+msgid "404 custom error"
+msgstr ""
+"Stranica koju ste tražili, nažalost nije pronađena.\n"
+"Stranicu nije moguće pronaći jer je možda privremeno nedostupna, uklonjena "
+"ili joj je promijenjeno ime.\n"
+"Molimo pokušajte ponovo."
+
+#: templates/navbar.html:6
+msgid "OPG Registry"
+msgstr "OPG Registar"
+
+#: templates/navbar.html:20
+msgid "Logout"
+msgstr "Odjavi se"
+
+#: templates/navbar.html:26
+msgid "Welcome greeting"
+msgstr "Dobrodošli,"
+
+#~ msgid "You pressed OK!"
+#~ msgstr "Pritisnuli ste OK!"
+
+#~ msgid "You pressed Cancel!"
+#~ msgstr "Pritisnuli ste Otkaži!"
+
+#~ msgid "Cancel"
+#~ msgstr "Otkaži"
+
+#~ msgid "Phone number must contain only numeric characters."
+#~ msgstr "Telefonski broj smije sadržavati samo brojeve."
+
+#~ msgid "Phone validation message"
+#~ msgstr ""
+#~ "Broj treba biti u formatu: +099999999 ili 99999999999. Maksimalno 17 "
+#~ "brojeva."
 
 #~ msgid ""
 #~ "Your password can’t be too similar to your other personal information."

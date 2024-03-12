@@ -2,12 +2,8 @@
 {% load static %}
 {% load i18n %}
 
-{% block css_files %}
-<!-- <link rel="stylesheet" href="{% static "register/styles.css" %}"> -->
-{% endblock %}
-
 {% block page_title %}
-Profil
+{% trans "Edit profile title" %}
 {% endblock %}
 
 {% block content %}
@@ -29,18 +25,15 @@ Profil
                 {% endfor %}
             <button class="btn btn-success my-3 px-3 text-white text-decoration-none fw-bold" type="submit">{% trans "Edit save" %}</button>
             </form>
-            
-            <!-- Delete button -->
-            <button id="deleteButton" class="btn btn-success my-3 px-3 text-white text-decoration-none fw-bold" type="submit" 
-                    onclick="confirmAndRedirect()">{% trans "Delete user account" %}</button>
-
+                <button id="deleteButton" class="btn btn-success my-3 px-3 text-white text-decoration-none fw-bold" type="submit" 
+                        onclick="confirmAndRedirect()">{% trans "Delete user account" %}</button>
         </div>
     </div>
 
 
     <script>
         
-    // variable for delete confirmation
+    // variables for delete confirmation
     var deleteUserConfirmationMessage = "{% trans 'Are you sure you want to delete your account?' %}";
     var deleteUserUrl = "{% url 'delete_user' user_id=request.user.id %}";
 

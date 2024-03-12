@@ -4,7 +4,7 @@
 
 
 {% block title %}
-Login
+{% trans "Login" %}
 {% endblock %}
 
 {% block css_files %}
@@ -13,13 +13,6 @@ Login
 
 {% block content %}
 
-<style>
-    .center-input .form-control {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-</style>
 
 <div class="container-fluid">
     <div class="row justify-content-center">
@@ -46,12 +39,7 @@ Login
 </div>
 
 <script>
-    window.addEventListener("beforeunload", function(e) {
-        // Make AJAX request to logout
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "{% url 'logout' %}", false); // Synchronous request
-        xhr.send();
-    });
+    var logoutUserUrl = "{% url 'logout' %}";
 </script>
 
 
